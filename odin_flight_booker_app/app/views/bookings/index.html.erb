@@ -1,0 +1,7 @@
+<h1>Current Bookings</h1>
+
+
+<% @bookings.each do |book| %>
+<%= "#{book.passenger.name} is flying from #{book.flight.departure_airport.name}. " %>
+<%= "To #{book.flight.arrival_airport.name} on #{book.flight.departure_date}. " %></br>
+<% end %>

@@ -1,0 +1,28 @@
+<h1>Flights.com</h1>
+
+<h2>Search For a Flight</h2>
+  <%= form_tag(flights_path, :method => "get", id: "search_form") do %>
+    <p>From</p>
+  <%= select_tag(:departure_airport, options_for_select(@airports)) %>
+    <p>To </p>
+  <%= select_tag(:arrival_airport, options_for_select(@airports)) %>
+    <p>Passengers </p>
+  <%= select_tag(:passengers, options_for_select(@passengers)) %>
+    <p>Departing </p>
+  <%= select_tag(:departing, options_for_select(@dates)) %>
+    <%= submit_tag "Search" %>
+<% end %>
+
+<% unless @departures.empty? %>
+  <h2>Search Results</h2>
+
+  <%= form_tag(new_booking_path, :method => "get", id: "search_form") do %>
+  <%= hidden_field_tag 'passengers', @passenger_number %>
+  <% @departures.each do |flight| %>
+  <%= radio_button_tag(:flight_id, flight.id) %>
+  <%= label_tag(:flight_id, "#{flight.departure_airport.name} => #{flight.arrival_airport.name} ") %>
+    <%= "Departing #{flight.departure_date}" %></br>
+  <% end %>
+  <%= submit_tag "Search" %>
+  <% end %>
+<% end %>

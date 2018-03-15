@@ -1,0 +1,13 @@
+Dear <%= @passenger.name %>
+===============================================
+
+Your booking has been confirmed. Please see details below.
+Name: <%= @passenger.name %>
+Departing: <%= @booking.flight.departure_airport.name %>
+Ariving at: <%= @booking.flight.arrival_airport.name %>
+Date: <%= @booking.flight.departure_date %>
+
+Thank you for your booking.
+Bon Voyage
+
+Thee Odin Flight Team

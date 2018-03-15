@@ -1,0 +1,25 @@
+The new view</br>
+
+Passenger number
+<%= @passenger_number %></br>
+
+
+<h1>Book your Flight.</h1>
+<%= form_for @booking do |f| %>
+  <%= "The flight departs from #{@flight.departure_airport.name}."  %></br>
+  <%= "The flight is to #{@flight.arrival_airport.name}."  %></br>
+  <%= "The flight departs on the #{@flight.departure_date}."  %></br>
+  <%= "The flight will take #{@flight.flight_duration} hours."  %></br>
+  <%=f.hidden_field :flight_id, value: @flight_id  %>
+
+    <% @passengers.each do |passenger| %>
+    <%= f.fields_for 'passengers[]', passenger do |pa| %>
+      <%= pa.label :name %>
+      <%= pa.text_field :name %>
+      <%= pa.label :email %>
+      <%= pa.text_field :email %></br>
+      <% end %>
+    <% end %>
+  <%=f.submit "Book" %>
+<% end %>
+<%= @passengers %>
